@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waste Disposal System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Serif:wght@600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWix+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkR4j8k2E1L0P3lY9S+6Wf8s5V7Yx04Fh9ZA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body class="home-page">
+    <header class="topbar">
+      <div class="container nav-wrap">
+        <a class="brand" href="index.html">
+          <span class="brand-mark"><img src="img/logo.svg" alt="WDS Logo" /></span>
+          <span>Waste Disposal System</span>
+        </a>
+        <button class="btn btn-outline mobile-toggle" id="mobileToggle" type="button">Menu</button>
+        <nav class="nav-links" id="navLinks">
+          <a data-nav href="index.html">Home</a>
+          <a data-nav href="about.html">About</a>
+          <a data-nav href="services.html">Services</a>
+          <a href="#howItWorks">How It Works</a>
+        </nav>
+        <div class="nav-actions" id="authArea">
+          <a class="btn btn-outline" href="auth.html"><i class="fa-solid fa-sign-in-alt"></i> Login</a>
+          <a class="btn btn-primary" href="auth.html"><i class="fa-solid fa-user-plus"></i> Register</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="page home-main">
+      <section class="container home-hero">
+        <div class="home-hero-text enter-item">
+          <span class="badge"><i class="fa-solid fa-seedling"></i> Premium Eco Platform</span>
+          <h1>Smart Waste Management<br />for a Cleaner Tomorrow</h1>
+          <p>
+            Efficient waste collection and tracking for a sustainable future.
+          </p>
+          <div class="actions-row home-hero-actions">
+            <a class="btn btn-primary" href="auth.html"><i class="fa-solid fa-trash-can"></i> Report Waste</a>
+            <a class="btn btn-outline" href="user-dashboard.html" data-track-pickup><i class="fa-solid fa-location-dot"></i> Track Pickup</a>
+          </div>
+        </div>
+
+        <div class="home-hero-visual enter-item" style="animation-delay: 0.2s;">
+          <img class="hero-illustration" src="img/hero-waste.svg" alt="Waste collection truck in smart city" />
+        </div>
+      </section>
+
+      <section class="container home-section" id="featuresSection">
+        <h2 class="home-title">Our Features</h2>
+        <div class="home-features-grid">
+          <article class="home-feature-card enter-item">
+            <img class="feature-media" src="img/features/schedule.svg" alt="Smart Pickup Scheduling" />
+            <i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>
+            <h3>Smart Pickup Scheduling</h3>
+            <p>Book pickups in seconds with optimized date-time availability and route-aware planning.</p>
+          </article>
+          <article class="home-feature-card enter-item" style="animation-delay: 0.1s;">
+            <img class="feature-media" src="img/features/tracking.svg" alt="Real-Time Tracking" />
+            <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+            <h3>Real-Time Tracking</h3>
+            <p>Follow collection status from request to completion with live operational progress updates.</p>
+          </article>
+          <article class="home-feature-card enter-item" style="animation-delay: 0.2s;">
+            <img class="feature-media" src="img/features/complaint.svg" alt="Complaint Management" />
+            <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+            <h3>Complaint Management</h3>
+            <p>Raise issues, monitor resolutions, and keep communication transparent and accountable.</p>
+          </article>
+          <article class="home-feature-card enter-item" style="animation-delay: 0.3s;">
+            <img class="feature-media" src="img/features/recycle.svg" alt="Eco-Friendly Recycling" />
+            <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+            <h3>Eco-Friendly Recycling</h3>
+            <p>Support clean segregation workflows and promote sustainable recycling at scale.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="container home-section" id="howItWorks">
+        <h2 class="home-title">How It Works</h2>
+        <div class="how-grid timeline-grid">
+          <article class="how-step enter-item">
+            <img class="how-media" src="img/features/step-register.svg" alt="Register account" />
+            <div class="how-number">1</div>
+            <h3>Register Account</h3>
+            <p>Create your profile and securely access pickup and tracking tools.</p>
+            <span class="how-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </article>
+          <article class="how-step enter-item" style="animation-delay: 0.1s;">
+            <img class="how-media" src="img/features/step-request.svg" alt="Request pickup" />
+            <div class="how-number">2</div>
+            <h3>Request Pickup</h3>
+            <p>Submit waste details, location, and preferred schedule in just a few clicks.</p>
+            <span class="how-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </article>
+          <article class="how-step enter-item" style="animation-delay: 0.2s;">
+            <img class="how-media" src="img/features/step-collect.svg" alt="Waste collected" />
+            <div class="how-number">3</div>
+            <h3>Waste Collected</h3>
+            <p>Collectors complete the task, and status updates confirm completion.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="container home-section">
+        <div class="stats-row">
+          <article class="stat-item">
+            <strong id="homeCompletedCount" data-counter="12450">0</strong>
+            <span>Total Pickups</span>
+          </article>
+          <article class="stat-item">
+            <strong data-counter="3200">0</strong>
+            <span>Active Users</span>
+          </article>
+          <article class="stat-item">
+            <strong data-counter="8750">0</strong>
+            <span>Waste Recycled</span>
+          </article>
+          <article class="stat-item">
+            <strong data-counter="120">0</strong>
+            <span>Cities Covered</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="container home-section" id="homeTestimonialsSection">
+        <h2 class="home-title">Approved User Reviews</h2>
+        <div class="home-features-grid" id="homeTestimonialsRows">
+          <article class="home-feature-card">
+            <h3>No reviews yet</h3>
+            <p>Approved customer reviews will appear here.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="container home-section">
+        <div class="home-cta">
+          <h2>Join Us in Keeping the Environment Clean</h2>
+          <a class="btn btn-primary cta-btn" href="auth.html"><i class="fa-solid fa-check-circle"></i> Register Now</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer home-footer">
+      <div class="container footer-grid">
+        <div>
+          <h3>About Company</h3>
+          <p>Waste Disposal System helps communities stay clean through smart scheduling, transparent tracking, and eco-focused operations.</p>
+          <a class="btn btn-outline" href="about.html" style="margin-top: 8px;"><i class="fa-solid fa-leaf"></i> Our Origin Vision</a>
+        </div>
+        <div>
+          <h3>Quick Links</h3>
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="#howItWorks">How It Works</a>
+        </div>
+        <div>
+          <h3>Contact Information</h3>
+          <p><i class="fa-solid fa-envelope"></i> support@wds.local</p>
+          <p><i class="fa-solid fa-phone"></i> +1 000 555 0101</p>
+          <p><i class="fa-solid fa-location-dot"></i> 72 Green Valley, Prime City</p>
+          <div class="social-links" aria-label="Social media links">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="container footer-bottom">&copy; 2026 Waste Disposal System. All rights reserved.</div>
+    </footer>
+
+    <script type="module">
+      import { getActiveSessionUser } from './js/services/auth.js';
+      
+      window.addEventListener('DOMContentLoaded', () => {
+        const user = getActiveSessionUser();
+        if (user) {
+          const dashboard = user.role === 'admin' ? 'admin-dashboard.html' : user.role === 'collector' ? 'collector-dashboard.html' : 'user-dashboard.html';
+          window.location.href = dashboard;
+        }
+      });
+    </script>
+    <script src="js/runtime-compat.js?v=20260401"></script>
+    <script type="module" src="js/app.js?v=20260327"></script>
+    <script type="module" src="js/home.js?v=20260406-1"></script>
+  </body>
+</html>

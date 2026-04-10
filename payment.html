@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment | Waste Disposal System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Serif:wght@600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav-wrap">
+        <a class="brand" href="index.html">
+          <span class="brand-mark"><img src="img/logo.svg" alt="WDS Logo" /></span>
+          <span>Waste Disposal System</span>
+        </a>
+        <button class="btn btn-outline mobile-toggle" id="mobileToggle" type="button">Menu</button>
+        <nav class="nav-links" id="navLinks">
+          <a data-nav href="index.html">Home</a>
+          <a data-nav href="services.html">Services</a>
+          <a data-nav href="user-dashboard.html">Dashboard</a>
+        </nav>
+        <div class="nav-actions" id="authArea"></div>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="container">
+        <article class="card" style="max-width: 760px; margin: 0 auto;">
+          <span class="badge">Secure Checkout</span>
+          <h1 style="font-family: 'IBM Plex Serif', serif; margin-bottom: 8px;">Complete Your Pickup Payment</h1>
+          <p style="margin-top: 0;">Submit your UPI payment details to confirm the pickup request.</p>
+
+          <div class="payment-summary" id="paymentSummary" style="margin-top: 14px;">Loading payment details...</div>
+
+          <form id="paymentForm" style="margin-top: 14px;">
+            <div class="field">
+              <label for="paymentAmount">Amount (INR)</label>
+              <input id="paymentAmount" name="paymentAmount" readonly />
+            </div>
+            <div class="field">
+              <label for="upiId">UPI ID</label>
+              <input id="upiId" name="upiId" type="text" placeholder="name@bank" autocomplete="off" required />
+            </div>
+            <div class="field">
+              <label for="upiTxnId">Transaction ID</label>
+              <input id="upiTxnId" name="upiTxnId" type="text" placeholder="TXN123456789" autocomplete="off" required />
+            </div>
+            <button class="btn btn-primary" id="payNowBtn" type="submit">Pay Now</button>
+          </form>
+
+          <div id="paymentNotice" class="notice hidden" style="margin-top: 12px;"></div>
+        </article>
+      </section>
+
+      <div id="paymentSuccessOverlay" class="payment-success-overlay hidden" aria-hidden="true">
+        <div class="payment-success-card" role="dialog" aria-modal="true" aria-labelledby="paymentSuccessTitle">
+          <div class="payment-check-wrap" aria-hidden="true">
+            <div class="payment-check-circle"></div>
+            <svg class="payment-checkmark" viewBox="0 0 92 92">
+              <path d="M26 47.5l13.5 13.5L66 34.5" />
+            </svg>
+          </div>
+          <span class="badge" style="margin-top: 18px;">Payment Confirmed</span>
+          <h2 id="paymentSuccessTitle">Payment Successful ✅</h2>
+          <p id="paymentSuccessMessage">Your pickup request has been paid successfully.</p>
+          <div class="actions-row" style="justify-content: center;">
+            <button class="btn btn-primary" id="paymentSuccessContinueBtn" type="button">Continue</button>
+            <button class="btn btn-outline" id="paymentSuccessTrackBtn" type="button">Track Order</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="js/runtime-compat.js?v=20260401"></script>
+    <script type="module" src="js/app.js?v=20260327"></script>
+    <script type="module" src="js/payment.js?v=20260404-2"></script>
+  </body>
+</html>

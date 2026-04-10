@@ -1,0 +1,383 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard | Waste Disposal System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Serif:wght@600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/runtime-compat.js?v=20260401"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav-wrap">
+        <a class="brand" href="index.html">
+          <span class="brand-mark"><img src="img/logo.svg" alt="WDS Logo" /></span>
+          <span>Waste Disposal System</span>
+        </a>
+        <button class="btn btn-outline mobile-toggle" id="mobileToggle" type="button">Menu</button>
+        <nav class="nav-links" id="navLinks">
+          <a data-nav href="index.html">Home</a>
+          <a data-nav href="about.html">About</a>
+          <a data-nav href="services.html">Services</a>
+        </nav>
+        <div class="nav-actions" id="authArea"></div>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="container">
+        <div class="card">
+          <h1 id="adminWelcome" style="font-family: 'IBM Plex Serif', serif;">Admin Dashboard</h1>
+          <p>Manage requests, assign collectors, monitor service quality, and review analytics.</p>
+          <nav class="subnav" id="adminSubnav" style="margin-top: 14px;">
+            <button class="subnav-btn active" type="button" data-section="adminOverviewSection">Overview</button>
+            <button class="subnav-btn" type="button" data-section="adminUsersSection">Users</button>
+            <button class="subnav-btn" type="button" data-section="adminCollectorsSection">Collectors</button>
+            <button class="subnav-btn" type="button" data-section="adminTransactionsSection">Transactions</button>
+            <button class="subnav-btn" type="button" data-section="adminSupportSection">Support</button>
+            <button class="subnav-btn" type="button" data-section="adminAnalyticsSection">Analytics</button>
+            <button class="subnav-btn" type="button" data-section="adminProfileSection">Profile</button>
+          </nav>
+        </div>
+      </section>
+
+      <section class="container" style="margin-top: 16px;" id="adminOverviewSection">
+        <div class="kpis">
+          <div class="kpi">
+            <strong id="kpiRequests">0</strong>
+            <span>Total Requests</span>
+          </div>
+          <div class="kpi">
+            <strong id="kpiCompleted">0</strong>
+            <span>Completed Pickups</span>
+          </div>
+          <div class="kpi">
+            <strong id="kpiUsers">0</strong>
+            <span>Registered Users</span>
+          </div>
+          <div class="kpi">
+            <strong id="kpiCollectors">0</strong>
+            <span>Collectors</span>
+          </div>
+          <div class="kpi">
+            <strong id="kpiRevenue">0</strong>
+            <span>Approved Revenue</span>
+          </div>
+        </div>
+        <div class="card" style="margin-top: 10px;">
+          <strong>Waste Distribution:</strong>
+          <div id="wasteBreakdown" style="margin-top: 8px;"></div>
+        </div>
+        <div class="card" style="margin-top: 10px;">
+          <h3>Payment Settings</h3>
+          <p>Set fixed pickup payment amount for all new user requests.</p>
+          <form id="feeForm" class="actions-row" style="align-items: end;">
+            <div style="min-width: 220px;">
+              <label for="pickupFee">Pickup Fee Amount</label>
+              <input id="pickupFee" name="pickupFee" type="number" min="1" step="1" required />
+            </div>
+            <button class="btn btn-primary" type="submit">Update Fee</button>
+          </form>
+        </div>
+        <div class="card">
+          <h2>Pickup Request Management</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Request ID</th>
+                  <th>Waste</th>
+                  <th>Date</th>
+                  <th>Location</th>
+                  <th>Payment</th>
+                  <th>Status</th>
+                  <th>Assigned Collector</th>
+                  <th>Select Collector</th>
+                  <th>Allocate</th>
+                  <th>Status Update</th>
+                  <th>Apply Status</th>
+                </tr>
+              </thead>
+              <tbody id="adminRequestRows"></tbody>
+            </table>
+          </div>
+        </div>
+        <div id="adminNotice" class="notice notice-success hidden" style="margin-top: 12px;"></div>
+      </section>
+
+      <section class="container hidden" style="margin-top: 16px;" id="adminUsersSection">
+        <div class="grid grid-2">
+          <article class="card">
+            <h2>Add User</h2>
+            <form id="addUserForm">
+              <div class="field">
+                <label for="userName">Name</label>
+                <input id="userName" name="name" required />
+              </div>
+              <div class="field">
+                <label for="userEmail">Email</label>
+                <input id="userEmail" name="email" type="email" required />
+              </div>
+              <div class="field">
+                <label for="userPhone">Phone</label>
+                <input id="userPhone" name="phone" required />
+              </div>
+              <div class="field">
+                <label for="userAddress">Address</label>
+                <textarea id="userAddress" name="address" required></textarea>
+              </div>
+              <div class="field">
+                <label for="userPassword">Password</label>
+                <input id="userPassword" name="password" type="password" required />
+              </div>
+              <button class="btn btn-primary" type="submit">Add User</button>
+            </form>
+          </article>
+
+          <article class="card">
+            <h2>User List</h2>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="adminUsersRows"></tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="container hidden" style="margin-top: 16px;" id="adminCollectorsSection">
+        <div class="grid grid-2">
+          <article class="card">
+            <h2>Add Collector</h2>
+            <form id="addCollectorForm">
+              <div class="field">
+                <label for="collectorName">Name</label>
+                <input id="collectorName" name="name" required />
+              </div>
+              <div class="field">
+                <label for="collectorEmail">Email</label>
+                <input id="collectorEmail" name="email" type="email" required />
+              </div>
+              <div class="field">
+                <label for="collectorPhone">Phone</label>
+                <input id="collectorPhone" name="phone" required />
+              </div>
+              <div class="field">
+                <label for="collectorAddress">Address</label>
+                <textarea id="collectorAddress" name="address" required></textarea>
+              </div>
+              <div class="field">
+                <label for="collectorPassword">Password</label>
+                <input id="collectorPassword" name="password" type="password" required />
+              </div>
+              <div class="field">
+                <label for="collectorEmployeeId">Collector Employee ID (Admin Only)</label>
+                <div class="actions-row">
+                  <input id="collectorEmployeeId" name="employeeId" readonly />
+                  <button class="btn btn-outline" id="generateCollectorEmployeeId" type="button">Generate ID</button>
+                </div>
+              </div>
+              <button class="btn btn-primary" type="submit">Add Collector</button>
+            </form>
+          </article>
+
+          <article class="card">
+            <h2>Collector List</h2>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Employee ID</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="adminCollectorsRows"></tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="container hidden" style="margin-top: 16px;" id="adminTransactionsSection">
+        <div class="kpis">
+          <div class="kpi">
+            <strong id="upiTotal">0</strong>
+            <span>UPI Total</span>
+          </div>
+          <div class="kpi">
+            <strong id="bankTotal">0</strong>
+            <span>Bank Transfer Total</span>
+          </div>
+          <div class="kpi">
+            <strong id="cardTotal">0</strong>
+            <span>Card Payment Total</span>
+          </div>
+          <div class="kpi">
+            <strong id="cashTotal">0</strong>
+            <span>Cash Total</span>
+          </div>
+          <div class="kpi">
+            <strong id="pendingRevenue">0</strong>
+            <span>Pending Revenue</span>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top: 16px;">
+          <h2>Transaction List</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Request ID</th>
+                  <th>Method</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Reference</th>
+                  <th>Paid At</th>
+                </tr>
+              </thead>
+              <tbody id="adminTransactionRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="container hidden" style="margin-top: 16px;" id="adminSupportSection">
+        <div class="grid grid-2">
+          <article class="card">
+            <h2>Feedback Log</h2>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Request</th>
+                    <th>Rating</th>
+                    <th>Comment</th>
+                    <th>User</th>
+                    <th>Moderation</th>
+                    <th>Time</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="feedbackRows"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="card">
+            <h2>Complaints</h2>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Subject</th>
+                    <th>Message</th>
+                    <th>Status</th>
+                    <th>Time</th>
+                  </tr>
+                </thead>
+                <tbody id="complaintRows"></tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="container hidden" style="margin-top: 16px;" id="adminAnalyticsSection">
+        <div class="card">
+          <h2>Analytics</h2>
+          <div class="analytics-grid" style="margin-top: 12px;">
+            <div>
+              <strong>Waste Types Distribution</strong>
+              <canvas id="wasteTypeChart" style="margin-top: 10px; max-height: 280px;"></canvas>
+            </div>
+            <div>
+              <strong>Payment Methods Distribution</strong>
+              <canvas id="paymentTypeChart" style="margin-top: 10px; max-height: 280px;"></canvas>
+            </div>
+            <div style="grid-column: 1 / -1; min-height: 320px;">
+              <strong>Pickup Status Trend (Pending vs Assigned vs In-Progress vs Completed)</strong>
+              <canvas id="pickupStatusChart" style="margin-top: 10px; max-height: 300px;"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container hidden" style="margin-top: 16px;" id="adminProfileSection">
+        <div class="grid grid-2">
+          <article class="card">
+            <h2>Admin Profile</h2>
+            <div class="profile-preview">
+              <img id="adminProfilePreview" alt="Admin Profile" src="" class="profile-img hidden" />
+            </div>
+            <form id="adminProfileForm">
+              <div class="field">
+                <label for="adminProfileImage">Upload Profile Image</label>
+                <input id="adminProfileImage" name="adminProfileImage" type="file" accept="image/*" />
+                <button class="btn btn-outline" id="adminRemoveProfileImageBtn" type="button" style="margin-top: 8px;">Remove Profile Image</button>
+              </div>
+              <div class="field">
+                <label for="adminNameInput">Name</label>
+                <input id="adminNameInput" name="adminNameInput" required />
+              </div>
+              <div class="field">
+                <label for="adminPhoneInput">Phone</label>
+                <input id="adminPhoneInput" name="adminPhoneInput" required />
+              </div>
+              <div class="field">
+                <label for="adminEmailInput">Email</label>
+                <input id="adminEmailInput" name="adminEmailInput" type="email" required />
+              </div>
+              <button class="btn btn-primary" type="submit">Update Profile</button>
+            </form>
+            <div id="adminProfileNotice" class="notice notice-success hidden" style="margin-top: 12px;"></div>
+          </article>
+
+          <article class="card">
+            <h2>Change Password</h2>
+            <form id="adminPasswordForm">
+              <div class="field">
+                <label for="adminCurrentPassword">Current Password</label>
+                <input id="adminCurrentPassword" name="adminCurrentPassword" type="password" required />
+              </div>
+              <div class="field">
+                <label for="adminNewPassword">New Password</label>
+                <input id="adminNewPassword" name="adminNewPassword" type="password" required />
+              </div>
+              <div class="field">
+                <label for="adminConfirmPassword">Confirm New Password</label>
+                <input id="adminConfirmPassword" name="adminConfirmPassword" type="password" required />
+              </div>
+              <button class="btn btn-outline" type="submit">Change Password</button>
+            </form>
+            <div id="adminPasswordNotice" class="notice notice-success hidden" style="margin-top: 12px;"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="container" style="margin-top: 16px;" id="notifications"></section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">Waste Disposal System | Administrative command center</div>
+    </footer>
+
+    <script type="module" src="js/app.js?v=20260327"></script>
+    <script type="module" src="js/admin-dashboard.js?v=20260405c"></script>
+  </body>
+</html>

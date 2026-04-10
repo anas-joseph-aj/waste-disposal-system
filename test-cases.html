@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Waste Disposal System - Test Cases</title>
+  <style>
+    @page { size: A4 landscape; margin: 12mm; }
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      color: #1f2a24;
+      background: #ffffff;
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: 22px;
+      color: #225f35;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 12px;
+    }
+    th, td {
+      border: 1px solid #a7b5ad;
+      padding: 7px;
+      text-align: left;
+      vertical-align: top;
+      line-height: 1.3;
+    }
+    th {
+      background: #2f6f3e;
+      color: #ffffff;
+      font-weight: 700;
+    }
+    tr:nth-child(even) td {
+      background: #f6faf7;
+    }
+  </style>
+</head>
+<body>
+  <h1>Waste Disposal System - Test Cases</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Test ID</th>
+        <th>Test Scenario Name</th>
+        <th>Test Data</th>
+        <th>Expected Result</th>
+        <th>Actual Result</th>
+        <th>Test Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>T1</td><td>User Login</td><td>Email: invalid, Password: invalid</td><td>Error message: Incorrect credentials</td><td>Pending execution</td><td>Not Run</td></tr>
+      <tr><td>T2</td><td>User Login</td><td>Email: valid, Password: invalid</td><td>Error message: Incorrect credentials</td><td>Pending execution</td><td>Not Run</td></tr>
+      <tr><td>T3</td><td>User Login</td><td>Email: invalid, Password: valid</td><td>Error message: Incorrect credentials</td><td>Pending execution</td><td>Not Run</td></tr>
+      <tr><td>T4</td><td>User Login</td><td>Email: valid, Password: valid</td><td>User redirected to User Dashboard</td><td>Pending execution</td><td>Not Run</td></tr>
+      <tr><td>T5</td><td>Registration</td><td>Empty required fields</td><td>Validation error shown</td><td>Pending execution</td><td>Not Run</td></tr>
+      <tr><td>T6</td><td>Registration</td><td>Existing email</td><td>Error: account already exists</td><td>Pending execution</td><td>Not Run</td></tr>
+      <tr><td>T7</td><td>Registration</td><td>Password length &lt; 8</td><td>Error: password must be at least 8 chars</td><td>Pending execution</td><td>Not Run</td></tr>
+      <tr><td>T8</td><td>Registration</td><td>Valid new user data</td><td>Registration successful, account created</td><td>Pending execution</td><td>Not Run</td></tr>
+      <tr><td>T9</td><td>Pickup Request</td><td>Date/time in past</td><td>Error: only upcoming date/time allowed</td><td>Pending execution</td><td>Not Run</td></tr>
+      <tr><td>T10</td><td>Pickup Request</td><td>Valid waste type, date, address, no image</td><td>Request submitted successfully</td><td>Pending execution</td><td>Not Run</td></tr>
+      <tr><td>T11</td><td>Pickup Request</td><td>Valid data with image upload</td><td>Request submitted with image attached</td><td>Pending execution</td><td>Not Run</td></tr>
+      <tr><td>T12</td><td>Pickup to Payment Flow</td><td>Submit pickup request</td><td>Payment panel opens immediately</td><td>Pending execution</td><td>Not Run</td></tr>
+      <tr><td>T13</td><td>Payment Submission</td><td>No payment method selected</td><td>Error: choose payment method</td><td>Pending execution</td><td>Not Run</td></tr>
+      <tr><td>T14</td><td>Payment Submission</td><td>Valid amount + valid method</td><td>Payment successful, record added to history</td><td>Pending execution</td><td>Not Run</td></tr>
+      <tr><td>T15</td><td>Profile Update</td><td>Change name/phone/address/email</td><td>Profile updated successfully</td><td>Pending execution</td><td>Not Run</td></tr>
+      <tr><td>T16</td><td>Change Password</td><td>New and confirm mismatch</td><td>Error: passwords do not match</td><td>Pending execution</td><td>Not Run</td></tr>
+      <tr><td>T17</td><td>Change Password</td><td>Valid current + valid new password</td><td>Password changed successfully</td><td>Pending execution</td><td>Not Run</td></tr>
+      <tr><td>T18</td><td>Collector View Routes</td><td>Collector login</td><td>Assigned routes list displayed</td><td>Pending execution</td><td>Not Run</td></tr>
+      <tr><td>T19</td><td>Collector Status Update</td><td>Update status to In-Progress/Completed</td><td>Status updated and visible in user tracking</td><td>Pending execution</td><td>Not Run</td></tr>
+      <tr><td>T20</td><td>Collector Proof Upload</td><td>Upload completion proof image</td><td>Proof saved and visible in request history</td><td>Pending execution</td><td>Not Run</td></tr>
+    </tbody>
+  </table>
+</body>
+</html>

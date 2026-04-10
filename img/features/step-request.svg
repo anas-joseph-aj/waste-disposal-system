@@ -1,0 +1,7 @@
+<svg width="84" height="84" viewBox="0 0 84 84" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Request step">
+  <circle cx="42" cy="42" r="40" fill="#eff4ff"/>
+  <rect x="24" y="18" width="36" height="48" rx="8" fill="#3f79da"/>
+  <rect x="30" y="26" width="24" height="4" rx="2" fill="#dce9ff"/>
+  <rect x="30" y="36" width="24" height="4" rx="2" fill="#dce9ff"/>
+  <rect x="30" y="46" width="16" height="4" rx="2" fill="#dce9ff"/>
+</svg>

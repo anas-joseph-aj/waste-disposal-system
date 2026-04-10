@@ -1,0 +1,7 @@
+<svg width="160" height="120" viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Eco-friendly recycling">
+  <rect width="160" height="120" rx="16" fill="#eef9f1"/>
+  <circle cx="80" cy="60" r="34" fill="#ffffff" stroke="#c4e4cb"/>
+  <path d="M80 34 l10 16 h-8 l8 13 -18 -1 8 -12 h-8z" fill="#3da34f"/>
+  <path d="M58 62 l18 -1 -4 7 14 -1 -10 14 -4 -7 -10 14z" fill="#4ab35b"/>
+  <path d="M102 72 l-8 -15 8 1 -6 -13 16 6 -8 1 16 6z" fill="#2f8e3d"/>
+</svg>

@@ -1,0 +1,9 @@
+<svg width="160" height="120" viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Real-time tracking">
+  <rect width="160" height="120" rx="16" fill="#eef5ff"/>
+  <path d="M30 90 C55 40, 110 40, 130 84" stroke="#6ca2f5" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <circle cx="32" cy="90" r="8" fill="#3f79da"/>
+  <circle cx="80" cy="62" r="8" fill="#3f79da"/>
+  <circle cx="128" cy="84" r="8" fill="#3f79da"/>
+  <path d="M80 24 c-10 0 -18 8 -18 18 0 12 18 31 18 31s18-19 18-31c0-10-8-18-18-18z" fill="#2e7d32"/>
+  <circle cx="80" cy="42" r="6" fill="#ffffff"/>
+</svg>

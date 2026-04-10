@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Waste Disposal System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Serif:wght@600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav-wrap">
+        <a class="brand" href="index.html">
+          <span class="brand-mark"><img src="img/logo.svg" alt="WDS Logo" /></span>
+          <span>Waste Disposal System</span>
+        </a>
+        <button class="btn btn-outline mobile-toggle" id="mobileToggle" type="button">Menu</button>
+        <nav class="nav-links" id="navLinks">
+          <a data-nav href="index.html">Home</a>
+          <a data-nav href="about.html">About</a>
+          <a data-nav href="services.html">Services</a>
+        </nav>
+        <div class="nav-actions" id="authArea"></div>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="container requires-auth">
+        <div class="grid grid-2">
+          <article class="card">
+            <span class="badge">Get in touch</span>
+            <h1 style="font-family: 'IBM Plex Serif', serif;">Contact Operations Team</h1>
+            <p>Use this page for service inquiries, technical support, and deployment coordination.</p>
+            <p><strong>Email:</strong> support@wds.local</p>
+            <p><strong>Phone:</strong> +1 000 555 0101</p>
+            <p><strong>Operations Desk:</strong> Mon - Sat, 08:00 to 20:00</p>
+          </article>
+
+          <article class="card">
+            <h2>Send Message</h2>
+            <form id="contactForm">
+              <div class="field">
+                <label for="contactName">Name</label>
+                <input id="contactName" name="contactName" required />
+              </div>
+              <div class="field">
+                <label for="contactEmail">Email</label>
+                <input id="contactEmail" name="contactEmail" type="email" required />
+              </div>
+              <div class="field">
+                <label for="contactMessage">Message</label>
+                <textarea id="contactMessage" name="contactMessage" required></textarea>
+              </div>
+              <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+            <div id="contactNotice" class="notice notice-success hidden" style="margin-top: 12px;">Thanks, your message was received.</div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">Waste Disposal System | Contact and support</div>
+    </footer>
+
+    <script src="js/runtime-compat.js?v=20260401"></script>
+    <script type="module" src="js/app.js?v=20260327"></script>
+    <script>
+      document.getElementById("contactForm")?.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const notice = document.getElementById("contactNotice");
+        if (notice) {
+          notice.classList.remove("hidden");
+        }
+        event.target.reset();
+      });
+    </script>
+  </body>
+</html>

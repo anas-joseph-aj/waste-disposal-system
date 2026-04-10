@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: waste-disposal-system-backend
+    runtime: node
+    rootDir: backend
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: PRIMARY_DB
+        value: mongo
+      - key: CLIENT_URL
+        value: https://waste-disposal-system.vercel.app
+      - key: CLIENT_URLS
+        value: https://waste-disposal-system.vercel.app
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false

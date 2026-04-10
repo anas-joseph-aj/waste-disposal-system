@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Flow Tester - WDS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c5f4f;
+            border-bottom: 3px solid #2c5f4f;
+            padding-bottom: 10px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 4px solid #2c5f4f;
+            background: #f9f9f9;
+        }
+        .test-section h2 {
+            margin-top: 0;
+            color: #2c5f4f;
+        }
+        .button {
+            background: #2c5f4f;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px 5px 5px 0;
+            font-size: 14px;
+        }
+        .button:hover {
+            background: #1f4638;
+        }
+        .button-danger {
+            background: #cc3333;
+        }
+        .button-danger:hover {
+            background: #991111;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        input, select, textarea {
+            border: 1px solid #ddd;
+            padding: 8px;
+            border-radius: 4px;
+            margin: 5px 0;
+            width: 100%;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px 0;
+            font-weight: bold;
+            color: #555;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .console-box {
+            background: #1e1e1e;
+            color: #0f0;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .log-entry {
+            margin: 2px 0;
+        }
+        .log-error { color: #ff4444; }
+        .log-success { color: #44ff44; }
+        .log-info { color: #44aaaa; }
+        .log-debug { color: #aaaa44; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 WDS Payment Flow Tester</h1>
+        
+        <div class="test-section">
+            <h2>Step 1: Pre-Test Checks</h2>
+            <p>Run these checks to verify your setup before testing the payment flow:</p>
+            <button class="button" onclick="checkBackendHealth()">Check Backend Health</button>
+            <button class="button" onclick="checkConsoleLogging()">Verify Console Logging Available</button>
+            <button class="button" onclick="checkDOMElements()">Verify Payment Panel HTML</button>
+            <button class="button button-danger" onclick="clearLogs()">Clear Logs</button>
+        </div>
+
+        <div class="test-section">
+            <h2>Step 2: Test Login & Access Dashboard</h2>
+            <p>These are pre-configured test users from the database:</p>
+            <div class="form-row">
+                <div>
+                    <label>Test User 1 (Regular User)</label>
+                    <p>Email: <code>user@wds.local</code></p>
+                    <p>Role: User</p>
+                    <button class="button" onclick="loginUser('user@wds.local', 'Get password from README or ask admin')">Login as User</button>
+                </div>
+                <div>
+                    <label>Test User 2 (Admin)</label>
+                    <p>Email: <code>admin@gmail.com</code></p>
+                    <p>Role: Admin</p>
+                    <button class="button" onclick="goToDashboard()">Go to User-Dashboard</button>
+                </div>
+            </div>
+            <div class="info">
+                💡 Tip: Check the <code>README.md</code> in the backend folder for test user passwords, or check database in <code>backend/data/db.json</code>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>Step 3: Manual Pickup Form Test</h2>
+            <p>After logging in, use this data to fill the pickup form:</p>
+            <label for="wasteType">Waste Type:</label>
+            <select id="wasteType">
+                <option>Plastic</option>
+                <option>Paper</option>
+                <option>Glass</option>
+                <option>Metal</option>
+                <option>Organic</option>
+            </select>
+
+            <label for="dateTime">Preferred Date & Time (future):</label>
+            <input type="datetime-local" id="dateTime" value="2025-02-15T14:00">
+
+            <label for="address">Address:</label>
+            <textarea id="address" rows="2" placeholder="123 Main Street, City">123 Test Street, Test City</textarea>
+
+            <label for="notes">Notes:</label>
+            <textarea id="notes" rows="2" placeholder="Any additional notes...">Test pickup for payment flow</textarea>
+
+            <p style="color: #666; margin: 10px 0;">
+                ⚠️ After clicking submit below, WATCH YOUR BROWSER CONSOLE (F12 → Console) for colored emoji logs
+            </p>
+            <button class="button" onclick="preparePickupForm()">Pre-fill Form in Dashboard</button>
+            <button class="button" onclick="testPickupSubmissionFlow()">Simulate Pickup Submission</button>
+        </div>
+
+        <div class="test-section">
+            <h2>Step 4: Monitor Payment Panel Opening</h2>
+            <p>Expected sequence when payment panel should open:</p>
+            <ol style="color: #666;">
+                <li>🔵 "Pickup form submitted" - Pickup request being sent</li>
+                <li>🟡 "Calling pickupAPI.create()" - API call in progress</li>
+                <li>🟢 "Pickup created: {...}" - Response received</li>
+                <li>📘 "openPaymentPanel() called" - Menu opening</li>
+                <li>📘 "Found 3 payment method buttons" - Buttons located</li>
+                <li>✅ Payment panel appears with 3 buttons visible</li>
+            </ol>
+            <p style="color: #666;">If these don't appear in order, scroll to Console Output below to see what's happening.</p>
+        </div>
+
+        <div class="test-section">
+            <h2>Step 5: Click Payment Methods</h2>
+            <p>Once payment panel opens, click on each payment method button and watch for:</p>
+            <ul style="color: #666;">
+                <li>Button background changes color (active state)</li>
+                <li>Payment details section appears</li>
+                <li>Console shows: "📗 Payment method selected: [method name]"</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2>🔍 Console Output & Logs</h2>
+            <p>Real-time logs from the testing process:</p>
+            <div class="console-box" id="consoleLogs">
+                <div class="log-entry log-info">[Ready to test - open browser DevTools (F12) to see additional logs]</div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>Quick Reference: What to Check</h2>
+            <ul style="color: #666;">
+                <li>✅ Backend running on http://localhost:5000</li>
+                <li>✅ Frontend accessible at http://localhost:5000</li>
+                <li>✅ Can login with test user credentials</li>
+                <li>✅ User-Dashboard loads without errors</li>
+                <li>✅ Pickup form submits successfully</li>
+                <li>✅ Payment panel opens and buttons are visible</li>
+                <li>✅ Payment method buttons are clickable</li>
+                <li>✅ Payment form can be submitted</li>
+            </ul>
+        </div>
+
+        <div class="test-section" style="background: #fff3cd; border-left-color: #ffc107;">
+            <h2>📝 Common Issues & Solutions</h2>
+            <p><strong>Issue:</strong> Backend not responding</p>
+            <p><strong>Solution:</strong> Ensure backend is running: <code>cd backend && npm start</code></p>
+            <hr>
+            <p><strong>Issue:</strong> Login fails with "Invalid credentials"</p>
+            <p><strong>Solution:</strong> Check test user password in <code>backend/data/db.json</code> or README.md</p>
+            <hr>
+            <p><strong>Issue:</strong> Payment buttons not visible</p>
+            <p><strong>Solution:</strong> Check browser console (F12) for error messages starting with ❌</p>
+            <hr>
+            <p><strong>Issue:</strong> "Cannot connect to API" error</p>
+            <p><strong>Solution:</strong> Check backend is running and click "Check Backend Health" above</p>
+        </div>
+    </div>
+
+    <script>
+        const logs = [];
+
+        function log(message, type = 'info') {
+            const entry = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logs.push({ message: entry, type });
+            updateConsoleDisplay();
+            console.log(entry);
+        }
+
+        function updateConsoleDisplay() {
+            const box = document.getElementById('consoleLogs');
+            box.innerHTML = logs.map(l => 
+                `<div class="log-entry log-${l.type}">${l.message}</div>`
+            ).join('');
+            box.scrollTop = box.scrollHeight;
+        }
+
+        function checkBackendHealth() {
+            log('Checking backend health...', 'debug');
+            fetch(`http://localhost:5000/health`, { method: 'GET' })
+                .then(r => {
+                    if (r.ok) {
+                        log('✅ Backend is healthy and responding', 'success');
+                    } else {
+                        log(`⚠️ Backend responded with status ${r.status}`, 'error');
+                    }
+                })
+                .catch(e => log(`❌ Backend health check failed: ${e.message}`, 'error'));
+        }
+
+        function checkConsoleLogging() {
+            log('✅ Console logging is working - check your browser DevTools (F12) for additional logs', 'success');
+        }
+
+        function checkDOMElements() {
+            const paymentPanel = document.querySelector('#paymentPanel');
+            const buttons = document.querySelectorAll('.payment-method-btn');
+            
+            if (!paymentPanel) {
+                log('❌ Payment panel element (#paymentPanel) not found in this page', 'error');
+            } else {
+                log('✅ Payment panel element found', 'success');
+            }
+            
+            if (buttons.length === 0) {
+                log('❌ Payment method buttons (.payment-method-btn) not found in this page', 'error');
+            } else {
+                log(`✅ Found ${buttons.length} payment method buttons`, 'success');
+            }
+
+            // Check in user-dashboard
+            log('📝 Note: Payment panel elements exist in user-dashboard.html, not on this test page', 'info');
+        }
+
+        function clearLogs() {
+            logs.length = 0;
+            document.getElementById('consoleLogs').innerHTML = '<div class="log-entry log-info">[Logs cleared]</div>';
+            log('Logs cleared', 'debug');
+        }
+
+        function goToDashboard() {
+            log('Redirecting to user-dashboard.html...', 'info');
+            setTimeout(() => {
+                window.location.href = '/user-dashboard.html';
+            }, 500);
+        }
+
+        function loginUser(email, passwordHint) {
+            log(`To login as ${email}: go to /auth.html and use the test credentials`, 'info');
+            log(`Password hint: ${passwordHint}`, 'info');
+            setTimeout(() => {
+                window.location.href = '/auth.html';
+            }, 500);
+        }
+
+        function preparePickupForm() {
+            log('This needs to be done manually on the user-dashboard.html page', 'info');
+            log('Once logged in, scroll to the Pickup Request section and fill the form with test data', 'info');
+            goToDashboard();
+        }
+
+        function testPickupSubmissionFlow() {
+            log('Payment submission test starts when you submit the actual pickup form on user-dashboard.html', 'info');
+            log('After you click the submit button on the pickup form, watch the browser console for these logs:', 'debug');
+            log('  🔵 Pickup form submitted', 'debug');
+            log('  🟡 Calling pickupAPI.create()', 'debug');
+            log('  🟢 Pickup created: [API response]', 'debug');
+            log('  📘 openPaymentPanel() called', 'debug');
+            log('  ... more logs as payment panel opens ...', 'debug');
+            log('', 'info');
+            log('Now go to user-dashboard.html and submit the pickup form', 'success');
+            goToDashboard();
+        }
+
+        // Initial log
+        log('Payment Flow Tester Ready - Follow the steps above to test', 'success');
+    </script>
+</body>
+</html>

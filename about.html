@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About | Waste Disposal System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Serif:wght@600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav-wrap">
+        <a class="brand" href="index.html">
+          <span class="brand-mark"><img src="img/logo.svg" alt="WDS Logo" /></span>
+          <span>Waste Disposal System</span>
+        </a>
+        <button class="btn btn-outline mobile-toggle" id="mobileToggle" type="button">Menu</button>
+        <nav class="nav-links" id="navLinks">
+          <a data-nav href="index.html">Home</a>
+          <a data-nav href="about.html">About</a>
+          <a data-nav href="services.html">Services</a>
+        </nav>
+        <div class="nav-actions" id="authArea"></div>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="container">
+        <div class="card">
+          <span class="badge">System Overview</span>
+          <h1 style="font-family: 'IBM Plex Serif', serif;">Professional Waste Operations Backbone</h1>
+          <p>
+            The Waste Disposal System is a web-based operational platform built to streamline pickup requests,
+            collector assignments, status tracking, and performance reporting across municipal waste services.
+          </p>
+        </div>
+      </section>
+
+      <section class="container requires-auth" style="margin-top: 18px;">
+        <div class="grid grid-2">
+          <article class="card">
+            <h2>Mission</h2>
+            <p>
+              Promote cleaner communities through efficient, transparent, and environmentally responsible waste collection.
+            </p>
+            <h3>Environmental Focus</h3>
+            <p>
+              Supports segregation workflows, hazardous waste handling controls, and awareness content for sustainable behavior.
+            </p>
+          </article>
+          <article class="card">
+            <h2>Architecture</h2>
+            <p>
+              User -> Pickup Request -> Admin Review -> Collector Assignment -> Field Collection -> Status Update -> Feedback and Analytics.
+            </p>
+            <h3>Built-in Governance</h3>
+            <p>
+              Role-based access control, request-level auditability, complaint channels, and notification-driven communication.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="container requires-auth" style="margin-top: 18px;">
+        <div class="card">
+          <h2>Database Entities</h2>
+          <div class="grid grid-3">
+            <div class="card"><strong>Users</strong><p>Authentication identities and roles.</p></div>
+            <div class="card"><strong>Collectors</strong><p>Field profiles and allocations.</p></div>
+            <div class="card"><strong>Admins</strong><p>Control center accounts.</p></div>
+            <div class="card"><strong>Pickup Requests</strong><p>Core service workflow records.</p></div>
+            <div class="card"><strong>Waste Categories</strong><p>Segregation taxonomy.</p></div>
+            <div class="card"><strong>Feedback / Complaints / Notifications</strong><p>Quality and communication layers.</p></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">Waste Disposal System | About and architecture overview</div>
+    </footer>
+
+    <script src="js/runtime-compat.js?v=20260401"></script>
+    <script type="module" src="js/app.js?v=20260327"></script>
+  </body>
+</html>

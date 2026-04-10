@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Collector Dashboard | Waste Disposal System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Serif:wght@600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav-wrap">
+        <a class="brand" href="index.html">
+          <span class="brand-mark"><img src="img/logo.svg" alt="WDS Logo" /></span>
+          <span>Waste Disposal System</span>
+        </a>
+        <button class="btn btn-outline mobile-toggle" id="mobileToggle" type="button">Menu</button>
+        <nav class="nav-links" id="navLinks">
+          <a data-nav href="index.html">Home</a>
+          <a data-nav href="about.html">About</a>
+          <a data-nav href="services.html">Services</a>
+        </nav>
+        <div class="nav-actions" id="authArea"></div>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="container">
+        <div class="card">
+          <h1 id="collectorWelcome" style="font-family: 'IBM Plex Serif', serif;">Collector Dashboard</h1>
+          <p>Manage assigned routes, tracking updates, notifications, and profile settings.</p>
+          <nav class="subnav" id="collectorSubnav" style="margin-top: 14px;">
+            <button class="subnav-btn active" type="button" data-section="collectorRoutesSection">Assigned Routes</button>
+            <button class="subnav-btn" type="button" data-section="collectorTrackingSection">Enter Tracking Status</button>
+            <button class="subnav-btn" type="button" data-section="collectorNotificationsSection">Notifications</button>
+            <button class="subnav-btn" type="button" data-section="collectorProfileSection">Profile</button>
+          </nav>
+        </div>
+      </section>
+
+      <section class="container" style="margin-top: 16px;" id="collectorRoutesSection">
+        <div class="card">
+          <h2>Assigned Routes</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Request ID</th>
+                  <th>Waste</th>
+                  <th>Pickup Time</th>
+                  <th>Address</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="collectorRouteRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="container hidden" style="margin-top: 16px;" id="collectorTrackingSection">
+        <div class="card">
+          <h2>Enter Tracking Status</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Request ID</th>
+                  <th>Waste</th>
+                  <th>Pickup Time</th>
+                  <th>Address</th>
+                  <th>Status</th>
+                  <th>Update Status</th>
+                  <th>Proof Upload</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="collectorRows"></tbody>
+            </table>
+          </div>
+        </div>
+        <div id="collectorNotice" class="notice notice-success hidden" style="margin-top: 12px;"></div>
+      </section>
+
+      <section class="container hidden" style="margin-top: 16px;" id="collectorNotificationsSection">
+        <div id="notifications"></div>
+      </section>
+
+      <section class="container hidden" style="margin-top: 16px;" id="collectorProfileSection">
+        <div class="grid grid-2">
+          <article class="card">
+            <h2>Profile</h2>
+            <div class="profile-preview">
+              <img id="collectorProfilePreview" alt="Profile" src="" class="profile-img hidden" />
+            </div>
+            <form id="collectorProfileForm">
+              <div class="field">
+                <label for="collectorProfileImage">Upload Profile Image</label>
+                <input id="collectorProfileImage" name="collectorProfileImage" type="file" accept="image/*" />
+                <button class="btn btn-outline" id="collectorRemoveProfileImageBtn" type="button" style="margin-top: 8px;">Remove Profile Image</button>
+              </div>
+              <div class="field">
+                <label for="collectorNameInput">Name</label>
+                <input id="collectorNameInput" name="collectorNameInput" required />
+              </div>
+              <div class="field">
+                <label for="collectorPhoneInput">Phone</label>
+                <input id="collectorPhoneInput" name="collectorPhoneInput" required />
+              </div>
+              <div class="field">
+                <label for="collectorEmailInput">Email</label>
+                <input id="collectorEmailInput" name="collectorEmailInput" type="email" required />
+              </div>
+              <button class="btn btn-primary" type="submit">Update Profile</button>
+            </form>
+            <div id="collectorProfileNotice" class="notice notice-success hidden" style="margin-top: 12px;"></div>
+          </article>
+
+          <article class="card">
+            <h2>Change Password</h2>
+            <form id="collectorPasswordForm">
+              <div class="field">
+                <label for="collectorCurrentPassword">Current Password</label>
+                <input id="collectorCurrentPassword" name="collectorCurrentPassword" type="password" required />
+              </div>
+              <div class="field">
+                <label for="collectorNewPassword">New Password</label>
+                <input id="collectorNewPassword" name="collectorNewPassword" type="password" required />
+              </div>
+              <div class="field">
+                <label for="collectorConfirmPassword">Confirm New Password</label>
+                <input id="collectorConfirmPassword" name="collectorConfirmPassword" type="password" required />
+              </div>
+              <button class="btn btn-outline" type="submit">Change Password</button>
+            </form>
+            <div id="collectorPasswordNotice" class="notice notice-success hidden" style="margin-top: 12px;"></div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">Waste Disposal System | Collector execution panel</div>
+    </footer>
+
+    <script src="js/runtime-compat.js?v=20260401"></script>
+    <script type="module" src="js/app.js?v=20260327"></script>
+    <script type="module" src="js/collector-dashboard.js?v=20260327"></script>
+  </body>
+</html>

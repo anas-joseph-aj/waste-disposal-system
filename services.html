@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services | Waste Disposal System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Serif:wght@600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav-wrap">
+        <a class="brand" href="index.html">
+          <span class="brand-mark"><img src="img/logo.svg" alt="WDS Logo" /></span>
+          <span>Waste Disposal System</span>
+        </a>
+        <button class="btn btn-outline mobile-toggle" id="mobileToggle" type="button">Menu</button>
+        <nav class="nav-links" id="navLinks">
+          <a data-nav href="index.html">Home</a>
+          <a data-nav href="about.html">About</a>
+          <a data-nav href="services.html">Services</a>
+        </nav>
+        <div class="nav-actions" id="authArea"></div>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="container">
+        <div class="card">
+          <span class="badge">Service Catalog</span>
+          <h1 style="font-family: 'IBM Plex Serif', serif;">Waste Management Services</h1>
+          <p>Operational modules designed for residents, municipal operators, and environmental oversight teams.</p>
+        </div>
+      </section>
+
+      <section class="container requires-auth" style="margin-top: 18px;">
+        <div class="grid grid-3">
+          <article class="card">
+            <h3>Pickup Scheduling</h3>
+            <p>Users schedule pickup with type, timing, and location details with built-in validation and tracking.</p>
+          </article>
+          <article class="card">
+            <h3>Collector Allocation</h3>
+            <p>Admins assign requests to available collectors and maintain controlled task execution workflows.</p>
+          </article>
+          <article class="card">
+            <h3>Status Intelligence</h3>
+            <p>Pending, In Progress, and Completed status updates with optional proof image upload.</p>
+          </article>
+          <article class="card">
+            <h3>Notification Stream</h3>
+            <p>Users and teams receive contextual updates at assignment and completion milestones.</p>
+          </article>
+          <article class="card">
+            <h3>Feedback and Complaints</h3>
+            <p>Users can rate service quality and submit issue reports for operational governance.</p>
+          </article>
+          <article class="card">
+            <h3>Analytics and Reporting</h3>
+            <p>Admin dashboard displays completion, collector load, and waste-type distribution metrics.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="container requires-auth" style="margin-top: 18px;">
+        <div class="card">
+          <h2>Advanced Feature Roadmap</h2>
+          <p>GPS tracking, AI-based waste prediction, IoT smart bin integration, payment gateway support, and route optimization are included as extension-ready modules.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">Waste Disposal System | Professional service modules</div>
+    </footer>
+
+    <script src="js/runtime-compat.js?v=20260401"></script>
+    <script type="module" src="js/app.js?v=20260327"></script>
+  </body>
+</html>

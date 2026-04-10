@@ -1,0 +1,10 @@
+<svg width="160" height="120" viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Complaint management">
+  <rect width="160" height="120" rx="16" fill="#fff3f0"/>
+  <rect x="34" y="24" width="92" height="72" rx="12" fill="#ffffff" stroke="#f0c4bb"/>
+  <rect x="48" y="38" width="64" height="8" rx="4" fill="#f2d8d3"/>
+  <rect x="48" y="52" width="50" height="8" rx="4" fill="#f2d8d3"/>
+  <rect x="48" y="66" width="56" height="8" rx="4" fill="#f2d8d3"/>
+  <circle cx="116" cy="78" r="14" fill="#da5f45"/>
+  <path d="M116 71 v9" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="116" cy="84" r="2" fill="#fff"/>
+</svg>

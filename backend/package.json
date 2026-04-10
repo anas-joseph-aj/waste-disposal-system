@@ -1,0 +1,25 @@
+{
+  "name": "wds-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Waste Disposal System",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "db:init": "node scripts/init-mongo.js",
+    "db:migrate:api": "node scripts/migrate-app-state-to-collections.js",
+    "db:seed": "node scripts/seed.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.4",
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.8.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^9.4.1",
+    "openai": "^4.91.0"
+  }
+}
