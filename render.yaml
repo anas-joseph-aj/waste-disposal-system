@@ -19,10 +19,6 @@ services:
         value: https://waste-disposal-system.vercel.app
       - key: CLIENT_URLS
         value: https://waste-disposal-system.vercel.app
-      - key: MONGODB_URI
-        fromGroup: waste-disposal-env
-      - key: JWT_SECRET
-        fromGroup: waste-disposal-env
       - key: SUPABASE_URL
         value: placeholder
       - key: SUPABASE_SERVICE_ROLE_KEY
